@@ -11,7 +11,7 @@
 $db_host = 'localhost';
 $db_user = 'root';
 $db_pass = 'admin';
-$db_name = 'chatDB';
+$db_name = 'chatDB1';
 
 $stat_mes1;
 $stat_mes2;

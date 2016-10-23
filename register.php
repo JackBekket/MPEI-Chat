@@ -19,16 +19,16 @@ if(isset($_POST["submit"])){
         $user=$_POST['user'];
         $pass=$_POST['pass'];
 
-        $con=mysql_connect('localhost','root','15797') or die(mysql_error());
-        mysql_select_db('chatDB') or die("cannot select DB");
+        $con=mysqli_connect('localhost','root','admin') or die(mysqli_error());
+        mysqli_select_db($con,'chatDB1') or die("cannot select DB");
 
-        $query=mysql_query("SELECT * FROM login WHERE username='".$user."'");
-        $numrows=mysql_num_rows($query);
+        $query=mysqli_query("SELECT * FROM login WHERE username='".$user."'");
+        $numrows=mysqli_num_rows($query);
         if($numrows==0)
         {
             $sql="INSERT INTO login(username,password) VALUES('$user','$pass')";
 
-            $result=mysql_query($sql);
+            $result=mysqli_query($sql);
 
 
             if($result){
