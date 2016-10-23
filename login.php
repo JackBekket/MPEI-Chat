@@ -47,6 +47,7 @@ if(isset($_POST["submit"])){
         } else {
             echo "Invalid username/password!";
 
+/*
             echo $user;
             echo "/n";
             echo $pass;
@@ -54,6 +55,7 @@ if(isset($_POST["submit"])){
             echo $dbusername;
             echo "/n";
             echo $dbpassword;
+            */
         }
 
     } else {
