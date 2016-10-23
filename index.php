@@ -28,7 +28,7 @@ if(isset($_POST['send']))
     <?php
     echo $stat_mes1;
     echo $stat_mes2;
-    echo $func_mes1;
+//    echo $func_mes1;
     echo $mes_s;
     ?>
 </div>

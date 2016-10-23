@@ -22,21 +22,34 @@ if(isset($_POST["submit"])){
         $con=mysqli_connect('localhost','root','admin') or die(mysql_error());
         mysqli_select_db($con,'chatDB1') or die("cannot select DB");
 
-        $query=mysqli_query($con,"SELECT * FROM login WHERE username='".$user."' AND password='".$pass."'");
+        $user=mysqli_real_escape_string($con,$user);
+        $pass=mysqli_real_escape_string($con,$pass);
+
+        $dbusername="u";
+        $dbpassword="p";
+        $dbsalt="s";
+
+
+        // $query=mysqli_query($con,"SELECT * FROM login WHERE username='".$user."' AND password='".$pass."'");
+
+        $query=mysqli_query($con,"SELECT * FROM login WHERE username='".$user."'");
+
         $numrows=mysqli_num_rows($query);
         if($numrows!=0)
         {
             while($row=mysqli_fetch_assoc($query))
             {
                 $dbusername=$row['username'];
-                echo $dbusername;
+            //    echo $dbusername;
                 $dbpassword=$row['password'];
-                echo $dbpassword;
+            //    echo $dbpassword;
+            $dbsalt=$row['salt'];
             }
 
 
+// if(md5(md5($_POST['pass']).$row['salt']) == $row['pass'])
 
-            if($user == $dbusername && $pass == $dbpassword)
+            if($user == $dbusername && md5(md5($pass).$dbsalt)==$dbpassword)
             {
                 session_start();
                 $_SESSION['sess_user']=$user;
@@ -46,7 +59,17 @@ if(isset($_POST["submit"])){
             }
         } else {
             echo "Invalid username/password!";
+            echo " </br>";
+            echo $pass;
+            echo " </br>";
+            echo $dbsalt;
+            echo " </br>";
+            echo $dbpassword;
+            echo " </br>";
+            echo md5(md5($pass).$dbsalt);
 
+            echo mysqli_error($con);
+          //  echo $sql;
 /*
             echo $user;
             echo "/n";

@@ -17,6 +17,7 @@ if(isset($_POST["submit"])){
 
     if(!empty($_POST['user']) && !empty($_POST['pass'])) {
         $user=$_POST['user'];
+
         $pass=$_POST['pass'];
 
 /**
@@ -25,15 +26,26 @@ if(isset($_POST["submit"])){
 *   Переделать запросы, что бы шли к connect.db.php
 *
 **/
+include("chat.func.php");
+
 
         $con=mysqli_connect('localhost','root','admin') or die(mysqli_error());
         mysqli_select_db($con,'chatDB1') or die("cannot select DB");
+
+        $user=mysqli_real_escape_string($con,$user);
+        $pass=mysqli_real_escape_string($con,$pass);
+
 
         $query=mysqli_query($con,"SELECT * FROM login WHERE username='".$user."'");
         $numrows=mysqli_num_rows($query);
         if($numrows==0)
         {
-            $sql="INSERT INTO login(username,password) VALUES('$user','$pass')";
+          //хэш соли
+          $salt=salt();
+          //солим пароль
+          $pass=md5(md5($pass).$salt);
+
+            $sql="INSERT INTO login(username,password,salt) VALUES('$user','$pass','$salt')";
 
             $result=mysqli_query($con,$sql);
 
@@ -42,6 +54,9 @@ if(isset($_POST["submit"])){
                 echo "Account was created";
             } else {
                 echo "Failure!";
+                echo mysqli_error($con);
+                echo $sql;
+
             }
 
         } else {

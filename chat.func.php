@@ -47,4 +47,11 @@ function send_msg($sender,$message)
         return false;
     }
 }
+
+//GenericSaltSimple
+function salt()
+ {
+	$salt = substr(md5(uniqid()), -8);
+	return $salt;
+ }
 ?>
