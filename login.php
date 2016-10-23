@@ -19,18 +19,22 @@ if(isset($_POST["submit"])){
         $user=$_POST['user'];
         $pass=$_POST['pass'];
 
-        $con=mysql_connect('localhost','root','15797') or die(mysql_error());
-        mysql_select_db('chatDB') or die("cannot select DB");
+        $con=mysqli_connect('localhost','root','admin') or die(mysql_error());
+        mysqli_select_db($con,'chatDB1') or die("cannot select DB");
 
-        $query=mysql_query("SELECT * FROM login WHERE username='".$user."' AND password='".$pass."'");
-        $numrows=mysql_num_rows($query);
+        $query=mysqli_query($con,"SELECT * FROM login WHERE username='".$user."' AND password='".$pass."'");
+        $numrows=mysqli_num_rows($query);
         if($numrows!=0)
         {
-            while($row=mysql_fetch_assoc($query))
+            while($row=mysqli_fetch_assoc($query))
             {
                 $dbusername=$row['username'];
+                echo $dbusername;
                 $dbpassword=$row['password'];
+                echo $dbpassword;
             }
+
+
 
             if($user == $dbusername && $pass == $dbpassword)
             {
@@ -42,6 +46,14 @@ if(isset($_POST["submit"])){
             }
         } else {
             echo "Invalid username/password!";
+
+            echo $user;
+            echo "/n";
+            echo $pass;
+            echo "/n";
+            echo $dbusername;
+            echo "/n";
+            echo $dbpassword;
         }
 
     } else {

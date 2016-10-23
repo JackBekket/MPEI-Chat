@@ -5,7 +5,7 @@
  */
 function get_msg()
 {
-    $query = "SELECT * FROM chatDB.chat";
+    $query = "SELECT * FROM chatDB1.chat";
     $run = mysqli_query($query);
     $messages = array();
     while($message = mysqli_fetch_assoc($run))
