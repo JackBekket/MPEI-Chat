@@ -18,8 +18,8 @@ function get_msg()
     $messages = array();
     while($message = mysqli_fetch_assoc($run))
     {
-        $messages[] = array('sender'=>$message['Sender'],
-            'message'=>$message['Message']);
+        $messages[] = array('sender'=>$message['sender'],
+            'message'=>$message['message']);
     }
     return $messages;
 }
@@ -28,8 +28,8 @@ function send_msg($sender,$message)
   include("connect.db.php");
     if(!empty($sender)&&!empty($message))
     {
-        $sender = mysqli_real_escape_string($sender);
-        $message = mysqli_real_escape_string($message);
+        $sender = mysqli_real_escape_string($connection,$sender);
+        $message = mysqli_real_escape_string($connection,$message);
 
       //  $query = "INSERT INTO chatDB1.chat VALUES(null,'{$sender}','$message')";
 
