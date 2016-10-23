@@ -1,0 +1,55 @@
+textarea#ChatMainID
+{
+    height: 55%;
+    border: 3px solid #cccccc;
+    font-family: Tahoma, sans-serif;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background:#fc0;
+    resize: none;
+    width: 100%;
+    position: relative;
+}
+input[type="text"]
+{
+    display: block;
+    margin: 0;
+    width: 100%;
+    font-family: sans-serif;
+    font-size: 18px;
+    appearance: none;
+    box-shadow: none;
+    border-radius: none;
+    background:#80BFFF;
+}
+textarea#ChatTextID
+{
+    height: 120px;
+    border: 3px solid #cccccc;
+    padding: 5px;
+    font-family: Tahoma, sans-serif;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background:#80BFFF;
+    resize: none;
+    width: 100%;
+}
+div#ChatForm
+{
+    position: relative;
+}
+div#NameForm
+{
+    position: absolute;
+    width: 20%;
+}
+div#TextForm
+{
+    position: absolute;
+    margin: 50px 0px;
+    width: 100%;
+}
+input[type="submit"]
+{
+    position: absolute;
+}
