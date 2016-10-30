@@ -29,14 +29,14 @@ if(isset($_POST["submit"])){
 include("chat.func.php");
 
 
-        $con=mysqli_connect('localhost','root','admin') or die(mysqli_error());
-        mysqli_select_db($con,'chatDB1') or die("cannot select DB");
+        $con=mysqli_connect('localhost','pm2016','pm2016') or die(mysqli_error());
+        mysqli_select_db($con,'pm2016') or die("cannot select DB");
 
         $user=mysqli_real_escape_string($con,$user);
         $pass=mysqli_real_escape_string($con,$pass);
 
 
-        $query=mysqli_query($con,"SELECT * FROM login WHERE username='".$user."'");
+        $query=mysqli_query($con,"SELECT * FROM login_ponomarev WHERE username='".$user."'");
         $numrows=mysqli_num_rows($query);
         if($numrows==0)
         {
@@ -45,7 +45,7 @@ include("chat.func.php");
           //солим пароль
           $pass=md5(md5($pass).$salt);
 
-            $sql="INSERT INTO login(username,password,salt) VALUES('$user','$pass','$salt')";
+            $sql="INSERT INTO login_ponomarev(username,password,salt) VALUES('$user','$pass','$salt')";
 
             $result=mysqli_query($con,$sql);
 

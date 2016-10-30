@@ -12,8 +12,11 @@
 function get_msg()
 {
   include("connect.db.php");
-
+/*
     $query = "SELECT * FROM chatDB1.chat";
+*/
+
+$query = "SELECT * FROM pm2016.chat_ponomarev";
     $run = mysqli_query($connection,$query);
     $messages = array();
     while($message = mysqli_fetch_assoc($run))
@@ -33,7 +36,7 @@ function send_msg($sender,$message)
 
       //  $query = "INSERT INTO chatDB1.chat VALUES(null,'{$sender}','$message')";
 
-        $query = "INSERT INTO chatDB1.chat VALUES('{$sender}','$message')";
+        $query = "INSERT INTO pm2016.chat_ponomarev VALUES('{$sender}','$message')";
 
         if($run = mysqli_query($connection,$query))
         {

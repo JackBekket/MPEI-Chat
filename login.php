@@ -19,8 +19,8 @@ if(isset($_POST["submit"])){
         $user=$_POST['user'];
         $pass=$_POST['pass'];
 
-        $con=mysqli_connect('localhost','root','admin') or die(mysql_error());
-        mysqli_select_db($con,'chatDB1') or die("cannot select DB");
+        $con=mysqli_connect('localhost','pm2016','pm2016') or die(mysql_error());
+        mysqli_select_db($con,'pm2016') or die("cannot select DB");
 
         $user=mysqli_real_escape_string($con,$user);
         $pass=mysqli_real_escape_string($con,$pass);
@@ -32,7 +32,7 @@ if(isset($_POST["submit"])){
 
         // $query=mysqli_query($con,"SELECT * FROM login WHERE username='".$user."' AND password='".$pass."'");
 
-        $query=mysqli_query($con,"SELECT * FROM login WHERE username='".$user."'");
+        $query=mysqli_query($con,"SELECT * FROM login_ponomarev WHERE username='".$user."'");
 
         $numrows=mysqli_num_rows($query);
         if($numrows!=0)
